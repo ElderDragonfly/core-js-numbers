@@ -200,8 +200,11 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(n) {
-  return n;
+function isPrime(n, divisor = 2) {
+  if (n <= 1) return false;
+  if (n === divisor) return true;
+  if (n % divisor === 0) return false;
+  return isPrime(n, divisor + 1);
 }
 
 /**
@@ -610,7 +613,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  return Math.floor((number + 1) / 2);
+  return number % 2 === 0 ? number / 2 : Math.floor(number / 2) + 1;
 }
 
 module.exports = {
